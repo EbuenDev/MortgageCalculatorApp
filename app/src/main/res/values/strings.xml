@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">HomePay Planner</string>
+    <string name="principal_hint">Enter Loan amount</string>
+    <string name="interestRate_hint">Enter Interest Rate</string>
+    <string name="yearsPeriod_hint">Enter Period of Years</string>
+    <string name="calculatehint_button">CALCULATE</string>
+    <string name="loanHint">₱ 0.00</string>
+    <string name="interestRateHint">0.0%</string>
+    <string name="yearsPeriodHint">0 years\n</string>
+    <string name="monthlyPaymentHint">₱ 0.00</string>
+
+
 </resources>

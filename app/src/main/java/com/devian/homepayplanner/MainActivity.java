@@ -14,6 +14,7 @@ import com.devian.homepayplanner.databinding.ActivityMainBinding;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -32,46 +33,113 @@ public class MainActivity extends AppCompatActivity {
             return insets;
 
         });
+
         binding.CalculateButton.setOnClickListener(v -> {
+
+            try{
+                String principalString = binding.principalEditText.getEditText().getText().toString().trim(); //getting the string value from textInputLayout
+                double principal =Double.parseDouble(principalString); //converting the string to double
+
+                String annualInterestString = binding.annualInterestEditText.getEditText().getText().toString().trim();
+                double annualInterest = Double.parseDouble(annualInterestString);
+
+                String loanTermString = binding.loanTermInYearsEditText.getEditText().getText().toString().trim();
+                int loanTerm = Integer.parseInt(loanTermString);
+
+                if(principalString.isEmpty() || annualInterestString.isEmpty() || loanTermString.isEmpty()){
+                    Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                    double monthlyPayment;
+                    double monthlyInterestRate = annualInterest / 12 / 100;
+                    int numberOfPayments = loanTerm * 12;
+
+                    double powerOfNumber = Math.pow(1 + monthlyInterestRate, numberOfPayments); // output is a double
+                    double roundedPowerOfNumber = Math.round(powerOfNumber*1000)/1000.0; // rounding to 3 decimal places
+
+                    //calculating numerator and round to 5 decimal places
+                    double numerator = monthlyInterestRate * roundedPowerOfNumber;
+                    double roundedNumerator = Math.round(numerator*100000)/100000.0; // rounding to 5 decimal places
+
+                    //calculating denominator and round to 5 decimal places
+                    double denominator = roundedPowerOfNumber - 1;
+
+                    //calculate ng fraction to 6 decimal places
+                    double Fraction = roundedNumerator / denominator;
+                    double roundedFraction = Math.round(Fraction*1000000)/1000000.0; // rounding to 6 decimal places
+
+                    monthlyPayment = principal * roundedFraction;
+
+
+                    //getting the default locale for Philippines
+                    Locale philippines = new Locale("en", "PH");
+                    NumberFormat currency = NumberFormat.getCurrencyInstance(philippines);
+                    String monthlyPaymentString = currency.format(monthlyPayment); //passing the monthlyPayment int to string for display
+                    String viewInterest = String.valueOf(annualInterest);
+                    String viewLoanTerm = String.valueOf(loanTerm);
+
+                    //Fomatting the Principal in every 3 digits to have commas
+                    DecimalFormat decimalFormat = new DecimalFormat("#,###");
+                    String formattedValue = decimalFormat.format(principal); //"₱ "
+
+                    //Displaying the Calculated Result passing all the value in textview
+                    binding.principalTextView.setText("\u20B1 " +formattedValue);
+                    binding.interestRateTextView.setText(viewInterest + " %");
+                    binding.periodOfYearsTextView.setText(viewLoanTerm + " Years");
+                    binding.monthlyPaymentTextView.setText(String.valueOf(monthlyPaymentString));
+
+
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Input only numberical values", Toast.LENGTH_SHORT).show();
+            }
             // get and converting user input to integers
-            double principal = Integer.parseInt(binding.principalEditText.getText().toString());
-            double annualInterest = Integer.parseInt(binding.annualInterestEditText.getText().toString());
-            int loanTerm = Integer.parseInt(binding.loanTermInYearsEditText.getText().toString());
-            double monthlyPayment;
+//            String principalString = String.valueOf(binding.principalEditText.getEditText()).trim(); //getting the string value from textInputLayout
+//            double principal =Integer.parseInt(principalString); //converting the string to integer
+//
+//            String annualInterestString = String.valueOf(binding.annualInterestEditText.getEditText()).trim();
+//            double annualInterest = Integer.parseInt(annualInterestString);
+//
+//            String loanTermString = String.valueOf(binding.loanTermInYearsEditText.getEditText()).trim();
+//            int loanTerm = Integer.parseInt(loanTermString);
+//            double monthlyPayment;
 
-            //where going to convert your monthly interest rate to decimal
-            double monthlyInterestRate = annualInterest / 12 / 100;
-            int numberOfPayments = loanTerm * 12;
-
-            double powerOfNumber = Math.pow(1 + monthlyInterestRate, numberOfPayments); // output is a double
-            double roundedPowerOfNumber = Math.round(powerOfNumber*1000)/1000.0; // rounding to 3 decimal places
-
-            //calculating numerator and round to 5 decimal places
-            double numerator = monthlyInterestRate * roundedPowerOfNumber;
-            double roundedNumerator = Math.round(numerator*100000)/100000.0; // rounding to 5 decimal places
-
-            //calculating denominator and round to 5 decimal places
-            double denominator = roundedPowerOfNumber - 1;
-
-            //calculate ng fraction to 6 decimal places
-            double Fraction = roundedNumerator / denominator;
-            double roundedFraction = Math.round(Fraction*1000000)/1000000.0; // rounding to 6 decimal places
-
-            monthlyPayment = principal * roundedFraction;
-
-
-            Locale philippines = new Locale("en", "PH");
-            NumberFormat currency = NumberFormat.getCurrencyInstance(philippines);
-            String monthlyPaymentString = currency.format(monthlyPayment);
-            binding.resultEditText.setText(String.valueOf(monthlyPaymentString));
-            String viewInterest = String.valueOf(annualInterest);
-            String viewLoanTerm = String.valueOf(loanTerm);
-
-            DecimalFormat decimalFormat = new DecimalFormat("#,###");
-            String formattedValue = decimalFormat.format(principal); //"₱ "
-            binding.principalTextView.setText("\u20B1 " +formattedValue);
-            binding.annuaInterestTextView.setText(viewInterest + " %");
-            binding.loanTermTextView.setText(viewLoanTerm + " Years");
+//            where going to convert your monthly interest rate to decimal
+//            double monthlyInterestRate = annualInterest / 12 / 100;
+//            int numberOfPayments = loanTerm * 12;
+//
+//            double powerOfNumber = Math.pow(1 + monthlyInterestRate, numberOfPayments); // output is a double
+//            double roundedPowerOfNumber = Math.round(powerOfNumber*1000)/1000.0; // rounding to 3 decimal places
+//
+//            //calculating numerator and round to 5 decimal places
+//            double numerator = monthlyInterestRate * roundedPowerOfNumber;
+//            double roundedNumerator = Math.round(numerator*100000)/100000.0; // rounding to 5 decimal places
+//
+//            //calculating denominator and round to 5 decimal places
+//            double denominator = roundedPowerOfNumber - 1;
+//
+//            //calculate ng fraction to 6 decimal places
+//            double Fraction = roundedNumerator / denominator;
+//            double roundedFraction = Math.round(Fraction*1000000)/1000000.0; // rounding to 6 decimal places
+//
+//            monthlyPayment = principal * roundedFraction;
+//
+//
+//            //getting the default locale for Philippines
+//            Locale philippines = new Locale("en", "PH");
+//            NumberFormat currency = NumberFormat.getCurrencyInstance(philippines);
+//            String monthlyPaymentString = currency.format(monthlyPayment); //passing the monthlyPayment int to string for display
+//            String viewInterest = String.valueOf(annualInterest);
+//            String viewLoanTerm = String.valueOf(loanTerm);
+//
+//            //Fomatting the Principal in every 3 digits to have commas
+//            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+//            String formattedValue = decimalFormat.format(principal); //"₱ "
+//
+//            //Displaying the Calculated Result
+//            binding.principalTextView.setText("\u20B1 " +formattedValue);
+//            binding.interestRateTextView.setText(viewInterest + " %");
+//            binding.periodOfYearsTextView.setText(viewLoanTerm + " Years");
+//            binding.monthlyPaymentTextView.setText(String.valueOf(monthlyPaymentString));
         });
 
 
