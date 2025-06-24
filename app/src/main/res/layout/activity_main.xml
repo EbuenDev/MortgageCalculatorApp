@@ -56,7 +56,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Home"
+                            android:text=" Cash Loan"
                             android:fontFamily="@font/helvetica_roman"
                             android:textSize="22sp"
                             android:textColor="@color/white"
@@ -93,7 +93,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vehicle"
+                            android:text="Vehicle Loan"
                             android:fontFamily="@font/helvetica_roman"
                             android:textSize="22sp"
                             android:textColor="@color/white"
@@ -132,7 +132,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:fontFamily="@font/helvetica_roman"/>
+                    android:fontFamily="@font/helvetica_roman"
+
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -307,6 +309,7 @@
         android:layout_marginTop="650dp"
         android:layout_marginStart="294dp"
         android:text="@string/loanHint"
+        android:textSize="17sp"
         android:fontFamily="@font/helvetica_roman"/>
 
     <TextView
@@ -322,8 +325,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="680dp"
-        android:layout_marginStart="296dp"
+        android:layout_marginStart="320dp"
         android:text="@string/interestRateHint"
+        android:textSize="17sp"
         android:fontFamily="@font/helvetica_roman"/>
 
     <TextView
@@ -339,8 +343,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="710dp"
-        android:layout_marginStart="290dp"
+        android:layout_marginStart="333dp"
         android:text="@string/yearsPeriodHint"
+        android:textSize="17sp"
         android:fontFamily="@font/helvetica_roman"/>
 
     <TextView
@@ -357,7 +362,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="755dp"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="290dp"
         android:text="@string/monthlyPaymentHint"
         android:textSize="20sp"
         android:fontFamily="@font/helvetica_roman"/>

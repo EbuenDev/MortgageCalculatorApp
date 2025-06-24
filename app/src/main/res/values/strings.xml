@@ -5,8 +5,8 @@
     <string name="yearsPeriod_hint">Enter Period of Years</string>
     <string name="calculatehint_button">CALCULATE</string>
     <string name="loanHint">₱ 0.00</string>
-    <string name="interestRateHint">0.0 %</string>
-    <string name="yearsPeriodHint">0 Years</string>
+    <string name="interestRateHint">0.0</string>
+    <string name="yearsPeriodHint">0</string>
     <string name="monthlyPaymentHint">₱ 0.00</string>
 
 
