@@ -13,3 +13,23 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+GIT CHEAT SHEET
+
+Setup
+git config --global user.name “[firstname lastname]”
+git config --global user.email “[valid-email]”
+git config --global init.default main
+
+STAGE & SNAPSHOT
+git status
+git add [file] or . to add all file
+git reset [file] --hard
+git diff
+git commit -m “[descriptive message]”
+
+BRANCH & MERGE
+git branch
+git branch [branch-name]
+git merge [branch]
+git log

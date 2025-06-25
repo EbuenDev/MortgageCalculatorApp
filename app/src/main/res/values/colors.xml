@@ -3,11 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="olive_green">#2B4542</color>">
+    <color name="light_olive_green">#7D9D96</color>">
     <color name="green">#4CAF50</color>">
     <color name="gray">#636465</color>">
+    <color name="dark_gray">#474545</color>">
     <color name="light_gray">#959698</color>">
     <color name="my_primary_color">#2B4542</color>
     <color name="my_primary_dark_color">#FF0055AA</color>
+    <color name="background_color">#EFF2FB</color>
+
 
 
 

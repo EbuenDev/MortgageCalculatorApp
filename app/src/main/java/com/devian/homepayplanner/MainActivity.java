@@ -1,17 +1,23 @@
 package com.devian.homepayplanner;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.devian.homepayplanner.databinding.ActivityMainBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -37,23 +43,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CardView calculateButton = findViewById(R.id.calculate_button);
-
-
         calculateButton.setOnClickListener(v -> {
 
-
             String principalString = binding.principalEditText.getEditText().getText().toString().trim(); //getting the string value from textInputLayout
-
-
             String annualInterestString = binding.annualInterestEditText.getEditText().getText().toString().trim();
-
-
             String loanTermString = binding.loanTermInYearsEditText.getEditText().getText().toString().trim();
 
-
-
             boolean isValid = true;
-
 
                 if (principalString.isEmpty()) {
                     binding.principalEditText.setError("Principal is required");
@@ -68,13 +64,10 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
 
-
-
                 if (annualInterestString.isEmpty()) {
                     binding.annualInterestEditText.setError("Annual interest is required");
                     binding.annualInterestEditText.requestFocus();
                     isValid = false;
-                    binding.interestRateTextView.setText("0.0");
 
                     binding.annualInterestEditText.getEditText().setOnFocusChangeListener((view, hasFocus) -> {
                         if (hasFocus) {
@@ -87,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                     binding.loanTermInYearsEditText.setError("Loan term is required");
                     binding.loanTermInYearsEditText.requestFocus();
                     isValid = false;
-                    binding.periodOfYearsTextView.setText("0");
 
                     binding.loanTermInYearsEditText.getEditText().setOnFocusChangeListener((view, hasFocus) -> {
                         if (hasFocus) {
@@ -98,12 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isValid) {
                     try{
-
                         double principal =Double.parseDouble(principalString); //converting the string to double
                         double annualInterest = Double.parseDouble(annualInterestString);
                         int loanTerm = Integer.parseInt(loanTermString);
 
-                        Toast.makeText(this, "Calculating...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Calculation\nSuccessful!", Toast.LENGTH_SHORT).show();
                         double monthlyPayment;
                         double monthlyInterestRate = annualInterest / 12 / 100;
                         int numberOfPayments = loanTerm * 12;
@@ -139,15 +130,13 @@ public class MainActivity extends AppCompatActivity {
 
                         String viewLoanTerm = String.valueOf(loanTerm);
 
-                        //Fomatting the Principal in every 3 digits to have commas
-
                         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
                         //Displaying the Calculated Result passing all the value in textview
                         Log.d("DEBUG", "Formatted Principal: " + formattedValue);
                         binding.principalTextView.setText(formattedValue);
-                        binding.interestRateTextView.setText(formattedInterest);
-                        binding.periodOfYearsTextView.setText(viewLoanTerm);
+//                        binding.interestRateTextView.setText(formattedInterest);
+//                        binding.periodOfYearsTextView.setText(viewLoanTerm);
                         Log.d("DEBUG", "Monthly Payment: " + monthlyPaymentString);
                         binding.monthlyPaymentTextView.setText(String.valueOf(monthlyPaymentString));
 
@@ -156,10 +145,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-
-
         });
 
+    }
+    private void setInputTextLayoutViewStyle() {
+        TextInputLayout textInputLayout = findViewById(R.id.principal_editText);
+        textInputLayout.setHintEnabled(false); // Disable the default floating hint
+
+        TextView label = new TextView(this);
+        label.setText("Loan Amount");
+
+        Typeface customFont = ResourcesCompat.getFont(this,R.font.helvetica_medium); // NOTE: this code is not working but i will work on these
+        label.setTypeface(customFont);
+
+
+        label.setTextAppearance(this, androidx.appcompat.R.style.TextAppearance_AppCompat_Caption);
+        label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16); // Set text size to 16sp (adjust as needed)
+        label.setTypeface(Typeface.DEFAULT_BOLD);
+
+        // Add the new label to the TextInputLayout
+        textInputLayout.addView(label,0);// Add at the beginning
     }
 
 }

@@ -1,335 +1,434 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/header_container"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--  Top Container  -->
+
+    <TextView
+        android:id="@+id/containerTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/elevated_container"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline14"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/helvetica_roman"
+        android:text="Loan Amount"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        android:translationZ="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/containerTop"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/containerTop"
+        app:layout_constraintTop_toTopOf="@+id/containerTop" />
+
+    <TextView
+        android:id="@+id/principal_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/helvetica_bold"
+        android:text="@string/loanHint"
+        android:textSize="32sp"
+        android:translationZ="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/containerTop"
+        app:layout_constraintStart_toStartOf="@+id/containerTop"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--  End of Top Container  -->
+
+
+    <!-- Start of Mid Container  -->
+
+    <TextView
+        android:id="@+id/containerMid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/elevated_container"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/principal_editText"
+        style="?attr/textInputFilledStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:hint="@string/principal_hint"
+        app:hintTextColor="@color/white"
+        android:textColorHint="@color/white"
+        android:translationZ="3dp"
+        app:boxBackgroundColor="@color/light_olive_green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/containerMid">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_roman"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:maxLength="10"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/annualInterest_editText"
+        style="?attr/textInputFilledStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/interestRate_hint"
+        android:textColorHint="@color/white"
+        app:hintTextColor="@color/white"
+        android:translationZ="3dp"
+        app:boxBackgroundColor="@color/light_olive_green"
+        app:layout_constraintBottom_toTopOf="@+id/loanTerm_inYears_editText"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/principal_editText"
+        app:layout_constraintVertical_bias="0.503">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_roman"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:textColor="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loanTerm_inYears_editText"
+        style="?attr/textInputFilledStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:hint="@string/yearsPeriod_hint"
+        android:textColorHint="@color/white"
+        app:hintTextColor="@color/white"
+        android:translationZ="3dp"
+        app:boxBackgroundColor="@color/light_olive_green"
+        app:layout_constraintBottom_toBottomOf="@+id/containerMid"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_roman"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:maxLength="2"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--  End of Mid Container  -->
+
+
+    <!-- Start Bottom Container  -->
+
+    <TextView
+        android:id="@+id/containerBottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/elevated_container"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/helvetica_bold"
+        android:text="Monthly Payment :"
+        android:textSize="20sp"
+        android:translationZ="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/containerBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/containerBottom"
+        app:layout_constraintTop_toTopOf="@+id/containerBottom"
+        app:layout_constraintVertical_bias="0.47" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/calculate_button"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:translationZ="3dp"
+        app:cardBackgroundColor="@color/olive_green"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/containerBottom">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_active">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/helvetica_medium"
+                android:text="Calculate"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--  End of Bottom Container  -->
 
 
     <TextView
         android:id="@+id/application_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/helvetica_bold"
         android:text="Mortgage Calculator"
-        android:textSize="30sp"
-        android:fontFamily="@font/helvetica_bold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:layout_marginStart="25dp"
-        android:text="Calculate your loan with ease!"
-        android:textSize="18sp"
-        android:fontFamily="@font/helvetica_roman"/>
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:translationZ="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="155dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="8dp">
-            
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_button"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_margin="5dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="6dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <FrameLayout
-                    android:background="@drawable/button_active"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    
-                    <RelativeLayout
-                        android:background="?attr/selectableItemBackground"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=" Cash Loan"
-                            android:fontFamily="@font/helvetica_roman"
-                            android:textSize="22sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:layout_centerInParent="true"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/vehicle_button"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_margin="5dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="6dp">
-
-                <FrameLayout
-                    android:background="@drawable/button_active"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <RelativeLayout
-                        android:background="?attr/selectableItemBackground"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vehicle Loan"
-                            android:fontFamily="@font/helvetica_roman"
-                            android:textSize="22sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:layout_centerInParent="true"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="220dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="32dp">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="?attr/textInputFilledStyle"
-                android:id="@+id/principal_editText"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/principal_hint">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:fontFamily="@font/helvetica_roman"
-
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="?attr/textInputFilledStyle"
-                android:id="@+id/annualInterest_editText"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/interestRate_hint"
-                android:layout_marginTop="25dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:fontFamily="@font/helvetica_roman" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="?attr/textInputFilledStyle"
-            android:id="@+id/loanTerm_inYears_editText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/yearsPeriod_hint"
-            android:layout_marginTop="25dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:fontFamily="@font/helvetica_roman" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/calculate_button"
-                android:layout_width="350dp"
-                android:layout_height="45dp"
-                android:layout_margin="5dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="6dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <FrameLayout
-                    android:background="@drawable/button_active"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <RelativeLayout
-                        android:background="?attr/selectableItemBackground"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Calculate"
-                            android:fontFamily="@font/helvetica_roman"
-                            android:textSize="22sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:layout_centerInParent="true"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
 
     <!--  Loan Result  -->
 
-    <TextView
-        android:id="@+id/yourLoan_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:layout_marginStart="30dp"
-        android:textSize="20sp"
-        android:text="Your Loan"
-        android:fontFamily="@font/helvetica_roman"/>
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/calculate_button"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="45dp"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:background="?attr/selectableItemBackground"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        app:cardBackgroundColor="@color/olive_green"-->
+    <!--        app:cardCornerRadius="6dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/guideline6"-->
+    <!--        app:layout_constraintHorizontal_bias="0.4"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/guideline2"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/guideline5">-->
+
+    <!--        &lt;!&ndash;        <FrameLayout&ndash;&gt;-->
+    <!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+    <!--        &lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+    <!--        &lt;!&ndash;            android:background="@drawable/button_active">&ndash;&gt;-->
+
+    <!--        &lt;!&ndash;        </FrameLayout>&ndash;&gt;-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/principal_textView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="294dp"-->
+    <!--        android:layout_marginTop="650dp"-->
+    <!--        android:fontFamily="@font/helvetica_roman"-->
+    <!--        android:text="@string/loanHint"-->
+    <!--        android:textSize="17sp" />-->
 
 
     <TextView
-        android:id="@+id/principal_textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:layout_marginStart="294dp"
-        android:text="@string/loanHint"
-        android:textSize="17sp"
-        android:fontFamily="@font/helvetica_roman"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:layout_marginStart="30dp"
-        android:text="Principal Amount :"
-        android:fontFamily="@font/helvetica_roman"/>
-
-    <TextView
-        android:id="@+id/interestRate_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="680dp"
-        android:layout_marginStart="320dp"
-        android:text="@string/interestRateHint"
-        android:textSize="17sp"
-        android:fontFamily="@font/helvetica_roman"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="680dp"
-        android:layout_marginStart="30dp"
-        android:text="Annual Interest Rate :"
-        android:fontFamily="@font/helvetica_roman"/>
-
-    <TextView
-        android:id="@+id/periodOfYears_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="710dp"
-        android:layout_marginStart="333dp"
-        android:text="@string/yearsPeriodHint"
-        android:textSize="17sp"
-        android:fontFamily="@font/helvetica_roman"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="710dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="Period of Years :"
-        android:fontFamily="@font/helvetica_roman"/>
+        android:fontFamily="@font/helvetica_roman"
+        android:gravity="center"
+        android:text="Calculate your loan with ease!"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:translationZ="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/application_Name"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/monthlyPayment_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="755dp"
-        android:layout_marginStart="290dp"
+        android:fontFamily="@font/helvetica_bold"
         android:text="@string/monthlyPaymentHint"
-        android:textSize="20sp"
-        android:fontFamily="@font/helvetica_roman"/>
+        android:textSize="23sp"
+        android:translationZ="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/containerBottom"
+        app:layout_constraintEnd_toEndOf="@+id/containerBottom"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/containerBottom" />
 
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="755dp"
-        android:layout_marginStart="30dp"
-        android:text="Monthly Payment :"
-        android:textSize="20sp"
-        android:fontFamily="@font/helvetica_roman"/>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09" />
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="890dp"-->
-<!--        android:layout_marginStart="155dp"-->
-<!--        android:text="Developed by Devian"-->
-<!--        android:textSize="10sp"-->
-<!--        android:fontFamily="@font/helvetica_roman"/>-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.72" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.91" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.71" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11809318" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="194dp" />
 
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/helvetica_roman"
+        android:text="Developed by Devian"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
