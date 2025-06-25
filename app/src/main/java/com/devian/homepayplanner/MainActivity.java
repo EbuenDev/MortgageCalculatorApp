@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.principalEditText.setError("Principal is required");
                     binding.principalEditText.requestFocus();
                     isValid = false;
+                    binding.principalTextView.setText("₱ 0.00");
 
                     binding.principalEditText.getEditText().setOnFocusChangeListener((view, hasFocus) -> {
                         if (hasFocus) {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.annualInterestEditText.setError("Annual interest is required");
                     binding.annualInterestEditText.requestFocus();
                     isValid = false;
+                    binding.interestRateTextView.setText("0.0");
 
                     binding.annualInterestEditText.getEditText().setOnFocusChangeListener((view, hasFocus) -> {
                         if (hasFocus) {
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.loanTermInYearsEditText.setError("Loan term is required");
                     binding.loanTermInYearsEditText.requestFocus();
                     isValid = false;
+                    binding.periodOfYearsTextView.setText("0");
 
                     binding.loanTermInYearsEditText.getEditText().setOnFocusChangeListener((view, hasFocus) -> {
                         if (hasFocus) {
