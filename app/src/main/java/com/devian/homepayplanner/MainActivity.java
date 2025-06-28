@@ -16,16 +16,23 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.devian.homepayplanner.databinding.ActivityMainBinding;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("principal", binding.principalEditText.getEditText().getText().toString());
+        outState.putString("annualInterest", binding.annualInterestEditText.getEditText().getText().toString());
+        outState.putString("loanTerm", binding.loanTermInYearsEditText.getEditText().getText().toString());
+        outState.putString("monthlyPayment", binding.monthlyPaymentTextView.getText().toString());
+        outState.putString("Loan", binding.principalTextView.getText().toString());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +49,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        CardView calculateButton = findViewById(R.id.calculate_button);
-        calculateButton.setOnClickListener(v -> {
+            if(savedInstanceState != null){
+                binding.principalEditText.getEditText().setText(savedInstanceState.getString("principal"));
+                binding.annualInterestEditText.getEditText().setText(savedInstanceState.getString("annualInterest"));
+                binding.loanTermInYearsEditText.getEditText().setText(savedInstanceState.getString("loanTerm"));
+                binding.monthlyPaymentTextView.setText(savedInstanceState.getString("monthlyPayment"));
+                binding.principalTextView.setText(savedInstanceState.getString("Loan"));
+            }
+
+            CardView calculateButton = findViewById(R.id.calculate_button);
+            calculateButton.setOnClickListener(v -> {
 
             String principalString = binding.principalEditText.getEditText().getText().toString().trim(); //getting the string value from textInputLayout
             String annualInterestString = binding.annualInterestEditText.getEditText().getText().toString().trim();
