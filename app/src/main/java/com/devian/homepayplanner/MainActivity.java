@@ -163,23 +163,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void setInputTextLayoutViewStyle() {
-        TextInputLayout textInputLayout = findViewById(R.id.principal_editText);
-        textInputLayout.setHintEnabled(false); // Disable the default floating hint
-
-        TextView label = new TextView(this);
-        label.setText("Loan Amount");
-
-        Typeface customFont = ResourcesCompat.getFont(this,R.font.helvetica_medium); // NOTE: this code is not working but i will work on these
-        label.setTypeface(customFont);
-
-
-        label.setTextAppearance(this, androidx.appcompat.R.style.TextAppearance_AppCompat_Caption);
-        label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16); // Set text size to 16sp (adjust as needed)
-        label.setTypeface(Typeface.DEFAULT_BOLD);
-
-        // Add the new label to the TextInputLayout
-        textInputLayout.addView(label,0);// Add at the beginning
-    }
 
 }
