@@ -1,5 +1,7 @@
 package com.devian.homepayplanner;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
